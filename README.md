@@ -1,3 +1,19 @@
+### LiraLab WidowX Setup and Saving Data Pipeline
+```
+cd ~/bridge_data_robot
+sudo USB_CONNECTOR_CHART=$(pwd)/usb_connector_chart.yml docker compose up --build robonet
+
+
+cd ~/bridge_data_robot
+sudo docker compose exec robonet bash
+
+export DATA=/tmp
+export EXP=/tmp 
+pip install --upgrade scipy
+python widowx_envs/widowx_envs/run_data_collection.py widowx_envs/experiments/bridge_data_v2/conf.py
+
+sudo docker cp robonet_root:/tmp/robonetv2 ~/widowx_data/
+```
 # Bridge Data Robot
 
 Code for controlling Trossen WidowX robot arms.
