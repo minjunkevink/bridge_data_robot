@@ -5,17 +5,16 @@ BASE_DIR = '/'.join(str.split(__file__, '/')[:-1])
 current_dir = os.path.dirname(os.path.realpath(__file__))
 
 from multicam_server.topic_utils import IMTopic
-from widowx_envs.widowx_env import VR_WidowX
+from widowx_envs.widowx_env import VR_WidowX, WidowXEnv
 from widowx_envs.control_loops import TimedLoop
 from widowx_envs.policies.vr_teleop_policy import VRTeleopPolicy
+from widowx_envs.policies.policy import NullPolicy
 
 env_params = {
-    'camera_topics': [IMTopic('/D435/color/image_raw'),
-                      #IMTopic('/yellow/image_raw'),
-                      #IMTopic('/blue/image_raw'),
-                      #IMTopic('/wrist/image_raw')
+    'camera_topics': [IMTopic('/yellow/image_raw'),
+                      IMTopic('/blue/image_raw'),
                       ],
-    'depth_camera_topics': [IMTopic('/D435/depth/image_rect_raw', dtype='16UC1')],
+    # 'depth_camera_topics': [IMTopic('/D435/depth/image_rect_raw', dtype='16UC1')],
     'gripper_attached': 'custom',
     'skip_move_to_neutral': True,
     'move_to_rand_start_freq': -1,
@@ -49,7 +48,5 @@ config = {
     'policy': policy,
     'save_format': ['raw'],
     'make_diagnostics': False,
-    'record_floor_height': False,
-    'data_save_dir': '/tmp/bridge_data_v2/',
-
+    'record_floor_height': False
 }

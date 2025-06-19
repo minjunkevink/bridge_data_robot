@@ -1,0 +1,5 @@
+D435: 'usb-0000:00:14.0-8'  # Match based on physical port
+blue: ''
+yellow: ''
+wrist: ''
+
